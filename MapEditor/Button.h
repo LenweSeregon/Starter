@@ -1,10 +1,4 @@
-//
-//  Button.h
-//  MapEditor
-//
-//  Created by Nicolas Serf on 14/07/2015.
-//  Copyright (c) 2015 Nicolas Serf. All rights reserved.
-//
+
 #ifndef __MapEditor__Button__
 #define __MapEditor__Button__
 
