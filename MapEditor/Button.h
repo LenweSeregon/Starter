@@ -1,10 +1,3 @@
-//
-//  Button.h
-//  MapEditor
-//
-//  Created by Nicolas Serf on 14/07/2015.
-//  Copyright (c) 2015 Nicolas Serf. All rights reserved.
-//
 #ifndef __MapEditor__Button__
 #define __MapEditor__Button__
 
@@ -55,7 +48,7 @@ public:
     void onMouseReleased(sf::Event& event);
     
     //Entity semantic respect
-    Button(const Button& app) = delete;
+    //Button(const Button& app) = delete;
     Button& operator=(const Button &) = delete;
     bool operator==(Button const&) = delete;
     bool operator!=(Button const&) = delete;
