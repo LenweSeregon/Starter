@@ -55,7 +55,7 @@ public:
     void onMouseReleased(sf::Event& event);
     
     //Entity semantic respect
-    Button(const Button& app) = delete;
+    //Button(const Button& app) = delete;
     Button& operator=(const Button &) = delete;
     bool operator==(Button const&) = delete;
     bool operator!=(Button const&) = delete;
