@@ -13,7 +13,7 @@
 /**
  * Abstract class for every screen in the application
  */
-class Screen : public NoCopyable
+class Screen : public NoCopyableButMovable
 {
     
 protected:
@@ -23,6 +23,7 @@ protected:
 public:
     
     Screen();
+    Screen(Screen&&) = default;
     virtual ~Screen();
     
     virtual void draw(sf::RenderWindow& renderer) = 0;

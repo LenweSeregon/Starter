@@ -36,10 +36,4 @@ public:
     NoCopyableAndMovable(NoCopyableAndMovable&&) = delete;
 };
 
-class CopyableAndMovable
-{
-
-};
-
-
 #endif /* defined(__MapEditor__NoCopyable__) */

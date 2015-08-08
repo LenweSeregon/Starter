@@ -26,8 +26,10 @@ private:
     sf::RectangleShape  m_textArea;
     sf::RectangleShape  m_cursor;
     
-    void updateTextPosition();
-    virtual void updateGraphic(); //Herited from input
+    void updateText();
+    void updatePosition() override;
+    void updateSize() override;
+    
     int detectCursorPosition(sf::Text textCopy, int xMouse);
     
     

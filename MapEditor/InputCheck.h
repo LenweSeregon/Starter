@@ -17,24 +17,23 @@ private:
     bool                m_isCheck;
     
     
-    void updateGraphic();
+    void updatePosition() override;
+    void updateSize() override;
     
 public:
     
     InputCheck(sf::Vector2f position, sf::Vector2f size, bool valueBox);
     ~InputCheck();
     
-    //Herited from Input
-    virtual void processEvent(sf::Event& event);
-    virtual void onMouseMove(sf::Event& event);
-    virtual void onMousePressed(sf::Event& event);
-    virtual void onMouseReleased(sf::Event& event);
+    void processEvent(sf::Event& event) override;
+    void onMouseMove(sf::Event& event) override;
+    void onMousePressed(sf::Event& event) override;
+    void onMouseReleased(sf::Event& event) override;
     
-    virtual void setPosition(sf::Vector2f position);
-    virtual void setPosition(int x, int y);
-    virtual void setSize(sf::Vector2f size);
-    virtual void setSize(int x, int y);
-    //
+    void setPosition(sf::Vector2f position) override;
+    void setPosition(int x, int y) override;
+    void setSize(sf::Vector2f size) override;
+    void setSize(int x, int y) override;
     
     bool getEtat()const;
     

@@ -14,7 +14,8 @@ m_characterSize(25),
 m_marginValue(10)
 {
     
-    updateGraphic();
+    updateSize();
+    updatePosition();
     
     m_textArea.setFillColor(sf::Color(133,133,133));
     m_textArea.setOutlineColor(sf::Color::White);
@@ -25,7 +26,7 @@ m_marginValue(10)
     m_textGraphic.setFont(Ressource::getFont("sansation.ttf"));
     m_textGraphic.setCharacterSize(m_characterSize);
     
-    updateTextPosition();
+    updateText();
     
 }
 
@@ -34,25 +35,28 @@ InputText::~InputText()
     
 }
 
-void InputText::updateGraphic()
+void InputText::updatePosition()
 {
     m_textArea.setPosition(m_position);
+    updateText();
+}
+
+void InputText::updateSize()
+{
     m_textArea.setSize(m_size);
-    m_textGraphic.setPosition(m_position);
+    updateText();
 }
 
 void InputText::setPosition(sf::Vector2f position)
 {
     Input::setPosition(position);
-    updateGraphic();
-    updateTextPosition();
+    updatePosition();
 }
 
 void InputText::setPosition(int x, int y)
 {
     Input::setPosition(x,y);
-    updateGraphic();
-    updateTextPosition();
+    updatePosition();
 }
 
 void InputText::setSize(sf::Vector2f size)
@@ -60,8 +64,7 @@ void InputText::setSize(sf::Vector2f size)
     if(size.y > m_characterSize - m_marginValue)
     {
         Input::setSize(size);
-        updateGraphic();
-        updateTextPosition();
+        updateSize();
     }
 }
 
@@ -70,8 +73,7 @@ void InputText::setSize(int x, int y)
     if(y > m_characterSize - m_marginValue)
     {
         Input::setSize(x,y);
-        updateGraphic();
-        updateTextPosition();
+        updateSize();
     }
 }
 
@@ -99,7 +101,7 @@ int InputText::detectCursorPosition(sf::Text textCopy, int xMouse)
     return iterator;
 }
 
-void InputText::updateTextPosition()
+void InputText::updateText()
 {
     m_textGraphic.setPosition(0,0);
     m_textGraphic.setOrigin(0,0);
@@ -125,7 +127,7 @@ void InputText::setCharacterSize(unsigned int size)
         m_characterSize = size;
         m_textGraphic.setCharacterSize(m_characterSize);
     }
-    updateTextPosition();
+    updateText();
 }
 
 void InputText::processEvent(sf::Event& event)

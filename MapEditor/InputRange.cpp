@@ -53,18 +53,6 @@ void InputRange::setCursorPosition()
                          m_volumeRectangle.getPosition().y+m_volumeRectangle.getGlobalBounds().height/2);
 }
 
-void InputRange::updateGraphic()
-{
-    //std::cout<<"Value update graphic: "<<m_value<<std::endl;
-    /*m_boundRectangle.setPosition(m_position);
-    m_boundRectangle.setSize(m_size);
-    
-    m_volumeRectangle.setPosition(m_position);
-    
-    m_cursor.setSize(sf::Vector2f(10,m_size.y + 20));
-    setCursorPosition();*/
-}
-
 void InputRange::updatePosition()
 {
     m_boundRectangle.setPosition(m_position);
@@ -74,7 +62,6 @@ void InputRange::updatePosition()
 
 void InputRange::updateSize()
 {
-    std::cout<<"Updating"<<std::endl;
     m_reductionCoefficient = m_size.x / m_maxValue;
     m_boundRectangle.setSize(m_size);
     m_volumeRectangle.setSize(sf::Vector2f(m_value*m_reductionCoefficient,m_size.y));
@@ -122,8 +109,7 @@ void InputRange::setPosition(sf::Vector2f position)
 void InputRange::setPosition(int x, int y)
 {
     Input::setPosition(x,y);
-    update();
-    updateGraphic();
+    updatePosition();
 }
 
 void InputRange::setSize(sf::Vector2f size)
@@ -135,8 +121,7 @@ void InputRange::setSize(sf::Vector2f size)
 void InputRange::setSize(int x, int y)
 {
     Input::setSize(x,y);
-    update();
-    updateGraphic();
+    updateSize();
 }
 
 void InputRange::onMouseMove(sf::Event& event)

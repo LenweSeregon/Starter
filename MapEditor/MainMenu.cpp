@@ -32,15 +32,14 @@ void MainMenu::processEvent(sf::Event &event)
 {
     if(m_isActive)
     {
-        /*if(Random::getIntRandom(0, 250) == 23)
+        if(Random::getIntRandom(0, 250) == 23)
         {
-            m_rangeBox.setSize(sf::Vector2f(500,70));
+            m_inputText.setSize(sf::Vector2f(500,70));
         }
         if(Random::getIntRandom(0, 250) == 5)
         {
-            m_rangeBox.setPosition(sf::Vector2f(600,500));
-            //std::cout<<"PositionDone"<<std::endl;
-        }*/
+            m_inputText.setPosition(sf::Vector2f(600,500));
+        }
         
         Menu::processEvent(event);
         m_checkBox.processEvent(event);

@@ -20,7 +20,8 @@ protected:
     sf::Vector2f    m_position;
     sf::Vector2f    m_size;
     
-    virtual void updateGraphic() = 0;
+    virtual void updatePosition() = 0;
+    virtual void updateSize() = 0;
     
 public:
     
