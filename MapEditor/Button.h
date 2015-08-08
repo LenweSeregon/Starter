@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 074386a503bb1121b39a451527b681cbe9a4af63
 #ifndef __MapEditor__Button__
 #define __MapEditor__Button__
 
@@ -51,6 +55,15 @@ public:
     void onMouseMove(sf::Event& event);
     void onMousePressed(sf::Event& event);
     void onMouseReleased(sf::Event& event);
+<<<<<<< HEAD
+=======
+    
+    //Entity semantic respect
+    //Button(const Button& app) = delete;
+    Button& operator=(const Button &) = delete;
+    bool operator==(Button const&) = delete;
+    bool operator!=(Button const&) = delete;
+>>>>>>> 074386a503bb1121b39a451527b681cbe9a4af63
 };
 
 #endif /* defined(__MapEditor__Button__) */
