@@ -11,12 +11,13 @@
 //Include PERSO
 #include "Screen.h"
 #include "Button.h"
+#include "NoCopyable.h"
 
 
 /**
  * Abstract class for every menu in the application
  */
-class Menu : public Screen
+class Menu : public Screen, private NoCopyable
 {
     
 protected:
@@ -40,12 +41,6 @@ public:
     virtual void draw(sf::RenderWindow& renderer);
     virtual void processEvent(sf::Event& event);
     virtual void update(sf::Time& delta);
-    
-    //Entity semantic respect
-    Menu(const Menu& app) = delete;
-    Menu& operator=(const Menu &) = delete;
-    bool operator==(Menu const&) = delete;
-    bool operator!=(Menu const&) = delete;
     
 };
 

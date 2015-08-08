@@ -10,9 +10,7 @@ class InputText : public Input
 {
     
 private:
-    
-    sf::Vector2f        m_position;
-    sf::Vector2f        m_size;
+
     sf::String          m_textValue;
     sf::Text            m_textGraphic;
     
@@ -22,11 +20,14 @@ private:
     
     unsigned int        m_maximumCharacter;
     unsigned int        m_cursorPosition;
+    unsigned int        m_characterSize;
+    unsigned int        m_marginValue;
     
     sf::RectangleShape  m_textArea;
     sf::RectangleShape  m_cursor;
     
     void updateTextPosition();
+    virtual void updateGraphic(); //Herited from input
     int detectCursorPosition(sf::Text textCopy, int xMouse);
     
     
@@ -48,6 +49,12 @@ public:
     virtual void onMouseMove(sf::Event& event);
     virtual void onMousePressed(sf::Event& event);
     virtual void onMouseReleased(sf::Event& event);
+    
+    virtual void setPosition(sf::Vector2f position);
+    virtual void setPosition(int x, int y);
+    virtual void setSize(sf::Vector2f size);
+    virtual void setSize(int x, int y);
+    //
     
     virtual void draw(sf::RenderWindow& renderer);
 };

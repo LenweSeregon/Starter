@@ -4,18 +4,18 @@
 #include <iostream>
 
 InputText::InputText(sf::Vector2f position, sf::Vector2f size, sf::String textValue, unsigned int maxCharacter):
-Input(),
+Input(position, size),
 m_isSelected(false),
 m_displayCursor(false),
-m_position(position),
-m_size(size),
 m_textValue(textValue),
 m_maximumCharacter(maxCharacter),
-m_cursorPosition(m_textValue.getSize())
+m_cursorPosition(m_textValue.getSize()),
+m_characterSize(25),
+m_marginValue(10)
 {
     
-    m_textArea.setPosition(m_position);
-    m_textArea.setSize(m_size);
+    updateGraphic();
+    
     m_textArea.setFillColor(sf::Color(133,133,133));
     m_textArea.setOutlineColor(sf::Color::White);
     m_textArea.setOutlineThickness(2.0f);
@@ -23,8 +23,7 @@ m_cursorPosition(m_textValue.getSize())
     m_textGraphic.setString(textValue);
     m_textGraphic.setColor(sf::Color::White);
     m_textGraphic.setFont(Ressource::getFont("sansation.ttf"));
-    m_textGraphic.setPosition(m_position);
-    m_textGraphic.setCharacterSize(25);
+    m_textGraphic.setCharacterSize(m_characterSize);
     
     updateTextPosition();
     
@@ -33,6 +32,47 @@ m_cursorPosition(m_textValue.getSize())
 InputText::~InputText()
 {
     
+}
+
+void InputText::updateGraphic()
+{
+    m_textArea.setPosition(m_position);
+    m_textArea.setSize(m_size);
+    m_textGraphic.setPosition(m_position);
+}
+
+void InputText::setPosition(sf::Vector2f position)
+{
+    Input::setPosition(position);
+    updateGraphic();
+    updateTextPosition();
+}
+
+void InputText::setPosition(int x, int y)
+{
+    Input::setPosition(x,y);
+    updateGraphic();
+    updateTextPosition();
+}
+
+void InputText::setSize(sf::Vector2f size)
+{
+    if(size.y > m_characterSize - m_marginValue)
+    {
+        Input::setSize(size);
+        updateGraphic();
+        updateTextPosition();
+    }
+}
+
+void InputText::setSize(int x, int y)
+{
+    if(y > m_characterSize - m_marginValue)
+    {
+        Input::setSize(x,y);
+        updateGraphic();
+        updateTextPosition();
+    }
 }
 
 sf::String InputText::getValue()const
@@ -75,13 +115,15 @@ void InputText::setMaximumCharacter(unsigned int max)
 
 void InputText::setCharacterSize(unsigned int size)
 {
-    if(size > m_textArea.getSize().y - 10)
+    if(size > m_textArea.getSize().y - m_marginValue)
     {
-        m_textGraphic.setCharacterSize(m_textArea.getSize().y - 10);
+        m_characterSize = m_textArea.getSize().y - 10;
+        m_textGraphic.setCharacterSize(m_characterSize);
     }
     else
     {
-        m_textGraphic.setCharacterSize(size);
+        m_characterSize = size;
+        m_textGraphic.setCharacterSize(m_characterSize);
     }
     updateTextPosition();
 }
@@ -161,10 +203,16 @@ void InputText::onTextEntered(sf::Event& event)
 {
     if(m_isSelected)
     {
+        std::cout<<event.text.unicode<<std::endl;
         //Exclude 59 = Delete touch
         //Exclude 71 = left touch
         //Exclude 72 = right touch
-        if(event.text.unicode > 31 && event.text.unicode < 127 && event.text.unicode != 59 && event.text.unicode != 71 && event.text.unicode != 72 && m_textValue.getSize() < m_maximumCharacter)
+        //Exclude 38 = left maj
+        //Exclude 42 = right maj
+        //Exclude 57 = spaceBar
+        //Excluse all of this, because, they are double signification for sfml i guess
+        
+        if(event.text.unicode > 31 && event.text.unicode < 127 && event.text.unicode != 59 && event.text.unicode != 71 && event.text.unicode != 72 &&  event.text.unicode != 38 && event.text.unicode != 42 && event.text.unicode != 57 && m_textValue.getSize() < m_maximumCharacter)
         {
             if(m_cursorPosition != m_textValue.getSize())
             {

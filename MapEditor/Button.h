@@ -8,7 +8,11 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
 
-class Button
+//Include Perso
+#include "Input.h"
+#include "NoCopyable.h"
+
+class Button : private NoCopyableButMovable
 {
     
 private:
@@ -32,6 +36,7 @@ private:
 public:
     
     Button(sf::Vector2f position, sf::Vector2f size, int sizeFont, std::string actionOnClick = "");
+    Button(Button&&) = default;
     ~Button();
     
     void draw(sf::RenderWindow& renderer);
@@ -46,12 +51,6 @@ public:
     void onMouseMove(sf::Event& event);
     void onMousePressed(sf::Event& event);
     void onMouseReleased(sf::Event& event);
-    
-    //Entity semantic respect
-    //Button(const Button& app) = delete;
-    Button& operator=(const Button &) = delete;
-    bool operator==(Button const&) = delete;
-    bool operator!=(Button const&) = delete;
 };
 
 #endif /* defined(__MapEditor__Button__) */

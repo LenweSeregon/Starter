@@ -16,8 +16,8 @@ private:
     sf::RectangleShape  m_rectangleChecker;
     bool                m_isCheck;
     
-    sf::Vector2f        m_position;
-    sf::Vector2f        m_size;    
+    
+    void updateGraphic();
     
 public:
     
@@ -25,10 +25,16 @@ public:
     ~InputCheck();
     
     //Herited from Input
-    void processEvent(sf::Event& event);
-    void onMouseMove(sf::Event& event);
-    void onMousePressed(sf::Event& event);
-    void onMouseReleased(sf::Event& event);
+    virtual void processEvent(sf::Event& event);
+    virtual void onMouseMove(sf::Event& event);
+    virtual void onMousePressed(sf::Event& event);
+    virtual void onMouseReleased(sf::Event& event);
+    
+    virtual void setPosition(sf::Vector2f position);
+    virtual void setPosition(int x, int y);
+    virtual void setSize(sf::Vector2f size);
+    virtual void setSize(int x, int y);
+    //
     
     bool getEtat()const;
     

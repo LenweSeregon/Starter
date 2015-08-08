@@ -5,6 +5,7 @@
 #include "ScreenManager.h"
 
 Button::Button(sf::Vector2f position, sf::Vector2f size, int sizeFont, std::string actionOnClick):
+NoCopyableButMovable(),
 m_position(position),
 m_size(size),
 m_action(actionOnClick)
@@ -26,6 +27,11 @@ m_action(actionOnClick)
     m_text.setString("-");
 }
 
+Button::~Button()
+{
+    
+}
+
 void Button::updatePositionText()
 {
     m_text.setOrigin(0,0);
@@ -42,11 +48,6 @@ void Button::setText(sf::String string)
 {
     m_text.setString(string);
     updatePositionText();
-    
-}
-
-Button::~Button()
-{
     
 }
 
@@ -94,7 +95,7 @@ void Button::onMousePressed(sf::Event& event)
 }
 
 void Button::onMouseReleased(sf::Event& event)
-{
+{    
     if(m_mouseHover && m_mouseClicked)
     {
         ScreenManager::gotoScreen(m_action);

@@ -10,8 +10,9 @@
 
 //Include PERSO
 #include "View.h"
+#include "NoCopyable.h"
 
-class Application
+class Application : private NoCopyable
 {
     
 private:
@@ -30,11 +31,6 @@ public:
     ~Application();
     void run();
     
-    //Entity semantic respect
-    Application(const Application& app) = delete;
-    Application& operator=(const Application &) = delete;
-    bool operator==(Application const&) = delete;
-    bool operator!=(Application const&) = delete;
 };
 
 

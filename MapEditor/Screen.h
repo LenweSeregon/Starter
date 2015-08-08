@@ -6,11 +6,14 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/System/Time.hpp>
 
+//Include Perso
+#include "NoCopyable.h"
+
 
 /**
  * Abstract class for every screen in the application
  */
-class Screen
+class Screen : public NoCopyable
 {
     
 protected:
@@ -28,12 +31,6 @@ public:
     
     virtual void gainFocus();
     virtual void looseFocus();
-    
-    //Entity semantic respect
-    Screen(const Screen& app) = delete;
-    Screen& operator=(const Screen &) = delete;
-    bool operator==(Screen const&) = delete;
-    bool operator!=(Screen const&) = delete;
 };
 
 #endif /* defined(__MapEditor__Screen__) */

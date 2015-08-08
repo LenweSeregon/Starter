@@ -17,6 +17,7 @@ private:
     
     InputText  m_inputText;
     InputRange m_rangeBox;
+    InputCheck m_checkBox;
     
 public:
     

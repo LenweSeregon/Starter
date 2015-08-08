@@ -3,9 +3,11 @@
 #include "MainMenu.h"
 #include "SettingsMenu.h"
 
+#include <iostream>
+
 Application::Application():
-m_sizeWindow(800,600),
-m_window(sf::VideoMode(m_sizeWindow.x, m_sizeWindow.y), "Map Editor V.0", sf::Style::Close),
+m_sizeWindow(1200,700),
+m_window(sf::VideoMode(m_sizeWindow.x, m_sizeWindow.y), "Map Editor V.0"),
 m_view(m_sizeWindow, m_window.getDefaultView())
 {
     m_window.setKeyRepeatEnabled(false);
@@ -38,6 +40,8 @@ void Application::run()
             ScreenManager::getCurrentScreen()->processEvent(event);
         }
         
+        //std::cout<<ScreenManager::getCurrentNameScreen()<<std::endl;
+        
         if(ScreenManager::getCurrentNameScreen() == "Close")
         {
             m_window.close();
@@ -53,6 +57,23 @@ void Application::processEvent(sf::Event &event)
     if(event.type == sf::Event::Closed)
     {
         m_window.close();
+    }
+    if(event.type == sf::Event::MouseButtonPressed)
+    {
+        sf::Vector2i posMouse = sf::Mouse::getPosition(m_window);
+        sf::Vector2f worldPos = m_window.mapPixelToCoords(posMouse);
+        
+        event.mouseButton.x = worldPos.x;
+        event.mouseButton.y = worldPos.y;
+        
+    }
+    if(event.type == sf::Event::MouseMoved)
+    {
+        sf::Vector2i posMouse = sf::Mouse::getPosition(m_window);
+        sf::Vector2f worldPos = m_window.mapPixelToCoords(posMouse);
+        
+        event.mouseMove.x = worldPos.x;
+        event.mouseMove.y = worldPos.y;
     }
 }
 

@@ -4,7 +4,9 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/System/Vector2.hpp>
 
-class View
+#include "NoCopyable.h"
+
+class View : private NoCopyable
 {
     
 private:
@@ -19,12 +21,6 @@ public:
     const sf::View& getView()const;
     
     void reinitDefaultView();
-    
-    //Entity semantic respect
-    View(const View& app) = delete;
-    View& operator=(const View &) = delete;
-    bool operator==(View const&) = delete;
-    bool operator!=(View const&) = delete;
     
     ~View();
 };

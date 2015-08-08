@@ -1,6 +1,10 @@
 #ifndef __MapEditor__Entity__
 #define __MapEditor__Entity__
 
+//Include PERSO
+#include "NoCopyable.h"
+
+//Include SFML
 #include <SFML/System/Vector2.hpp>
 
 //--------------------------------------------------------------------------------------------------------------------------------//
@@ -26,8 +30,6 @@ public:
     //Entity semantic respect
     GameEntity(const GameEntity& app) = delete;
     GameEntity& operator=(const GameEntity &) = delete;
-    bool operator==(GameEntity const&) = delete;
-    bool operator!=(GameEntity const&) = delete;
 };
 
 //--------------------------------------------------------------------------------------------------------------------------------//
